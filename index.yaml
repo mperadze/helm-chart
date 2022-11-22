@@ -3,7 +3,7 @@ entries:
   helm-chart-test:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-11-22T20:40:01.017526+04:00"
+    created: "2022-11-22T20:52:46.837907+04:00"
     description: A Helm chart for Kubernetes
     digest: 582a154a160e6a2fe43c4e11cb9d956714295a6dc7292956e9d963d092c5947f
     name: helm-chart-test
@@ -11,4 +11,4 @@ entries:
     urls:
     - git@github.com:mperadze/helm-chart.git/helm-chart-test-0.1.0.tgz
     version: 0.1.0
-generated: "2022-11-22T20:40:01.01654+04:00"
+generated: "2022-11-22T20:52:46.836572+04:00"
