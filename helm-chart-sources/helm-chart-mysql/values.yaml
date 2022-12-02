@@ -1,0 +1,6 @@
+# Default values
+
+container:
+    image: mysql:5.7
+
+replicaCount: 2
