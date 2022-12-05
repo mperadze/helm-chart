@@ -8,3 +8,6 @@ dependencies:
 - name: helm-chart-mysql
   version: "0.1.0"
   repository: "file://../helm-chart-mysql"
+maintainers:
+- email: misha.peradze@nexus.ge
+  name: Misha Peradze

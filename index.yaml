@@ -3,13 +3,16 @@ entries:
   helm-chart-multi:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-12-05T16:13:26.525294+04:00"
+    created: "2022-12-05T16:33:51.487341+04:00"
     dependencies:
     - name: helm-chart-mysql
       repository: file://../helm-chart-mysql
       version: 0.1.0
     description: A Helm chart for Kubernetes
-    digest: f9af5cf52424582669049f056a41c09d8bb7f95a325e711c0ffb14c4f9054601
+    digest: 7001e44e501e292a462a3f6330cc2282c031806b45b346762325f05433e6915f
+    maintainers:
+    - email: misha.peradze@nexus.ge
+      name: Misha Peradze
     name: helm-chart-multi
     type: application
     urls:
@@ -18,12 +21,12 @@ entries:
   helm-chart-mysql:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-12-05T16:13:26.525638+04:00"
+    created: "2022-12-05T16:33:51.487628+04:00"
     description: A Helm chart for Kubernetes
-    digest: a34e2477740e81d00195188963261c4e2274e15815a6ad65ce1478f48dd0a301
+    digest: 36716b2c22a5c021cdf1c9e581bd4b59084e4b12e7531903430514d416ec7856
     name: helm-chart-mysql
     type: application
     urls:
     - https://mperadze.github.io/helm-chart/helm-chart-mysql-0.1.0.tgz
     version: 0.1.0
-generated: "2022-12-05T16:13:26.522588+04:00"
+generated: "2022-12-05T16:33:51.486474+04:00"
