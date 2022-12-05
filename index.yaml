@@ -1,11 +1,22 @@
 apiVersion: v1
 entries:
+  helm-chart-mysql:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2022-12-05T13:15:05.466617+04:00"
+    description: A Helm chart for Kubernetes
+    digest: 48011f15682870a2ef238d312c6b3704f1fbfc1da88f971c36d321a89cc71193
+    name: helm-chart-mysql
+    type: application
+    urls:
+    - https://mperadze.github.io/helm-chart/helm-chart-mysql-0.1.0.tgz
+    version: 0.1.0
   helm-chart-test:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-12-02T17:53:42.871733+04:00"
+    created: "2022-12-05T13:15:05.467263+04:00"
     description: A Helm chart for Kubernetes
-    digest: 03ae2a69636e6688f6ba1b20c8b5364691f6f0fce190478819fc06be7cc83ece
+    digest: ea13ddcc09f7aae993ad881fed00afd50336664739db5cf86166bfca71d4e5de
     name: helm-chart-test
     type: application
     urls:
@@ -14,7 +25,7 @@ entries:
   mysql-chart-test:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-12-02T17:53:42.872071+04:00"
+    created: "2022-12-05T13:15:05.467765+04:00"
     description: A Helm chart for Kubernetes
     digest: 4c2b644848f7c6d67c9bf5ee0c026f0ebe074c8449b9c541e506c0c359babe73
     name: mysql-chart-test
@@ -22,4 +33,4 @@ entries:
     urls:
     - https://mperadze.github.io/helm-chart/mysql-chart-test-0.1.0.tgz
     version: 0.1.0
-generated: "2022-12-02T17:53:42.870257+04:00"
+generated: "2022-12-05T13:15:05.465317+04:00"
