@@ -1,0 +1,6 @@
+dependencies:
+- name: helm-chart-mysql
+  repository: file://../helm-chart-mysql
+  version: 0.1.0
+digest: sha256:b11be0fbdd78983d005cef02fca66f0b1c75fbf3d99dbf9d363a33de7ee73736
+generated: "2022-12-05T15:47:31.372508+04:00"

@@ -3,9 +3,9 @@ entries:
   helm-chart-mysql:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-12-05T13:17:59.002422+04:00"
+    created: "2022-12-05T15:48:22.148739+04:00"
     description: A Helm chart for Kubernetes
-    digest: a881731476e11c8d09ba3c030d3060610f6eb5f0bcb16a1b5466f613b062003f
+    digest: c109dab88e3d350b0500153afb75ae81a7a32c5c3ad84c709e9016f2fbaf1c79
     name: helm-chart-mysql
     type: application
     urls:
@@ -14,12 +14,16 @@ entries:
   helm-chart-nginx:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-12-05T13:17:59.002894+04:00"
+    created: "2022-12-05T15:48:22.149476+04:00"
+    dependencies:
+    - name: helm-chart-mysql
+      repository: file://../helm-chart-mysql
+      version: 0.1.0
     description: A Helm chart for Kubernetes
-    digest: 64058c5d962d15215a4d4f77494afed36c61c8ffa8503855b52183cdd19c9920
+    digest: 3b89db22a145a8c67e82453491b98c3db0c02de50446d93451d91598409dedd4
     name: helm-chart-nginx
     type: application
     urls:
     - https://mperadze.github.io/helm-chart/helm-chart-nginx-0.1.0.tgz
     version: 0.1.0
-generated: "2022-12-05T13:17:59.001049+04:00"
+generated: "2022-12-05T15:48:22.148255+04:00"
