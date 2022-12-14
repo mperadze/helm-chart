@@ -1,0 +1,36 @@
+# Default values for postgres.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# Common controls
+environment: dev
+application: postgres
+containerPort: 5432
+size: medium
+
+# Service controls
+service:
+  name: postgres-svc
+  type: ClusterIP
+  port: 5432
+
+# Deployment controls
+restartPolicy: Always
+
+replicas: 1
+resources:
+  requests:
+    cpu: 150m
+    memory: 500Mi
+  limits:
+    cpu: 500m
+    memory: 2Gi
+
+image:
+  imagePullSecret: regcred
+  repository: docker.io/docker-hub/postgres
+  tag: 13.3
+
+registrySecret:
+  name: acr-registry
+  config: { "auths": { "docker.io": { "auth": "" } } }

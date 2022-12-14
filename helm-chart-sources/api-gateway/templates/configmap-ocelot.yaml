@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm-{{ .Values.application }}-ocelot-{{ .Values.environment }}
+data:
+  {{ if eq .Values.environment "dev" }}
+  ocelot.json: {{ .Files.Get "conf/ocelot-dev.json" | toPrettyJson }}
+  {{ else if eq .Values.environment "test" }}
+  ocelot.json: {{ .Files.Get "conf/ocelot-test.json" | toPrettyJson }}
+  {{ else if eq .Values.environment "preprod" }}
+  ocelot.json: {{ .Files.Get "conf/ocelot-preprod.json" | toPrettyJson }}
+  {{ else if eq .Values.environment "kz-preprod" }}
+  ocelot.json: {{ .Files.Get "conf/ocelot-kz-preprod.json" | toPrettyJson }}
+  {{ else if eq .Values.environment "kz-prod" }}
+  ocelot.json: {{ .Files.Get "conf/ocelot-kz-prod.json" | toPrettyJson }}
+  {{ else if eq .Values.environment "prod" }}
+  ocelot.json: {{ .Files.Get "conf/ocelot-prod.json" | toPrettyJson }}
+  {{ end }}

@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.application }}-{{ .Values.environment }}
+  labels:
+    app: {{ .Values.application }}-{{ .Values.environment }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.application }}-{{ .Values.environment }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.application }}-{{ .Values.environment }}
+    spec:
+      restartPolicy: 
+      imagePullSecrets:
+      - name: {{ .Values.image.imagePullSecret }}
+      # affinity:
+      #   nodeAffinity:
+      #     requiredDuringSchedulingIgnoredDuringExecution:
+      #       nodeSelectorTerms:
+      #       - matchExpressions:
+      #         - key: size
+      #           operator: In
+      #           values:
+      #           - {{ .Values.size }}
+      containers:
+      - name: {{ .Values.application }}
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        ports:
+        - containerPort: {{ .Values.containerPort }}
+        resources:
+          requests:
+            cpu: {{ .Values.resources.requests.cpu }}
+            memory: "{{ .Values.resources.requests.memory }}"
+          limits:
+            cpu: {{ .Values.resources.limits.cpu }}
+            memory: "{{ .Values.resources.limits.memory }}"
+        env:
+        - name: URLs
+          valueFrom:
+            configMapKeyRef:
+              name: cm-{{ .Values.application }}-{{ .Values.environment }}
+              key: urls
+        - name: ApplicationInsights__InstrumentationKey
+          valueFrom:
+            configMapKeyRef:
+              name: cm-{{ .Values.application }}-{{ .Values.environment }}
+              key: applicationinsights-instrumentationkey
+        - name: ElasticConfiguration__Uri
+          valueFrom:
+            configMapKeyRef:
+              name: cm-{{ .Values.application }}-{{ .Values.environment }}
+              key: elasticconfiguration-uri
+        - name: ElasticConfiguration__Username
+          valueFrom:
+            configMapKeyRef:
+              name: cm-{{ .Values.application }}-{{ .Values.environment }}
+              key: elasticconfiguration-username
+        - name: ElasticConfiguration__Password
+          valueFrom:
+            secretKeyRef:
+              name: sec-{{ .Values.application }}-{{ .Values.environment }}
+              key: elasticconfiguration-password
+        - name: IsApiKeyEnabled
+          valueFrom:
+            configMapKeyRef:
+              name: cm-{{ .Values.application }}-{{ .Values.environment }}
+              key: isapikeyenabled
+        - name: SeriLogMinimumLevel
+          valueFrom:
+            configMapKeyRef:
+              name: cm-{{ .Values.application }}-{{ .Values.environment }}
+              key: serilogminimumlevel

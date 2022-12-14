@@ -1,4 +1,0 @@
-# Default values
-
-container:
-    image: mysql:5.7

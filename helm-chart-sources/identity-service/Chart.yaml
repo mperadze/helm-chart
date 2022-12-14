@@ -1,0 +1,4 @@
+apiVersion: v1
+description: A Helm chart for identity-service #Parameter to change for new applications
+name: identity-service #Parameter to change for new applications
+version: 1.0.0

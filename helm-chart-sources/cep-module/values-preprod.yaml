@@ -1,0 +1,89 @@
+# Default values for cep-module PREPROD.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+environment: kz-preprod
+size: xlarge
+
+pvc:
+  name: cep-module-kz-preprod-pvc
+  storage: 2500Gi
+  storageclassname: default
+  mountfolder: '/Kafka'
+  accessModes: ReadWriteOnce
+
+resources:
+  requests:
+    cpu: 1
+    memory: 16Gi
+  limits:
+    cpu: 8
+    memory: 16Gi
+
+resources:
+  requests:
+    cpu: 1
+    memory: 22Gi
+  limits: 
+    cpu: 14000m
+    memory: 22Gi
+
+# ingress controls
+ingress:
+  name: cep-module-ing
+  clusterIssuer: letsencrypt
+  allowCredentials: 'true'
+  allowHeaders: 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization,SessionId,api-key,token'
+  allowMethods: '*'
+  allowOrigin: '*'
+  enableCors: 'true'
+  hostName: preprod-kz-cdp-cep-module-local.hostname.com
+  secretName: hostname-wildcard-tls-preprod-integration-ns
+  path: '/'
+  className: internal-nginx
+
+
+image:
+  repository: cemulkerefe/cep-module
+  tag: latest
+
+kafka_bootstrap_server: kafka-cluster-kz-preprod-kafka-bootstrap.preprod-kafka.svc:9092
+cci_os_url: http://cdp-service-svc-kz-preprod.preprod-app.svc:5500
+applicationinsights_instrumentationkey: "InstrumentationKey=160382fc-7058-419b-a255-491b8f3fffe2;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/"
+elasticconfiguration_uri: "https://elk-preprod.es.westeurope.azure.elastic-cloud.com:443"
+elasticconfiguration_username: "logger"
+elasticconfiguration_password: "0080000H0000x"
+elasticconfiguration_kb_uri: "https://elk-preprod.kb.westeurope.azure.elastic-cloud.com:443"
+elasticconfiguration_kb_username: "logger"
+elasticconfiguration_kb_password: "0080000H0000x"
+isapikeyenabled: "false"
+fletum_api_url: "https://preprod-api.azurewebsites.net"
+thread_count: 12
+thread_capacity: 10000
+kafka_groupid: cci_cep_group
+
+
+new_relic_app_name: cep-module-service-kz-preprod
+
+
+
+livenessProbe:
+  enabled: true
+  httpGet:
+    path: "/swagger-ui.html"
+    port: 7070
+  initialDelaySeconds: 20
+  periodSeconds: 10
+  timeoutSeconds: 10
+  failureThreshold: 10
+  successThreshold: 1
+readinessProbe:
+  enabled: true
+  httpGet:
+    path: "/swagger-ui.html"
+    port: 7070
+  initialDelaySeconds: 15
+  periodSeconds: 10
+  timeoutSeconds: 10
+  failureThreshold: 10
+  successThreshold: 1

@@ -1,0 +1,4 @@
+apiVersion: v1
+description: A Helm chart for cdp-rewardcatalogue
+name: cdp-rewardcatalogue
+version: 1.0.0

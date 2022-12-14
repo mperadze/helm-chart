@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm-{{ .Values.application }}-{{ .Values.environment }}
+  namespace: {{ .Release.Namespace }}
+data:
+  spring_kafka_bootstrap_servers: "{{ .Values.spring_kafka_bootstrap_servers }}"
+  fletum_api_url: "{{ .Values.fletum_api_url }}"
+  applicationinsights-instrumentationkey: "{{ .Values.applicationinsights_instrumentationkey }}"
+  elasticconfiguration-uri: "{{ .Values.elasticconfiguration_uri }}"
+  elasticconfiguration-username: "{{ .Values.elasticconfiguration_username }}"
+  elasticconfiguration-kb-uri: "{{ .Values.elasticconfiguration_kb_uri }}"
+  elasticconfiguration-kb-username: "{{ .Values.elasticconfiguration_kb_username }}"
+  isapikeyenabled: "{{ .Values.isapikeyenabled }}"
+  logging_level_root: "{{ .Values.logging_level_root }}"
+  logging_level_web: "{{ .Values.logging_level_web }}"
+  logging_level_org_apache_http: "{{ .Values.logging_level_org_apache_http }}"
+  logging_level_com_efectura: "{{ .Values.logging_level_com_efectura }}"
+  country: "{{ .Values.country }}"
+  product_name: "{{ .Values.product_name }}"
+  app_name: "{{ .Values.app_name }}"
+  env_name: "{{ .Values.env_name }}"
+  direct_connection: "{{ .Values.direct_connection }}"
+  cep_module_url: "{{ .Values.cep_module_url }}"
+  entity_module_url: "{{ .Values.entity_module_url }}"
+  Log-CustomerId: "{{ .Values.logcustomerid }}"
+  Log-ApplicationName: "{{ .Values.logapplicationname }}"
+  Log-ComponentName: "{{ .Values.logcomponentname }}"
+  Log-ProductName: "{{ .Values.logproductname }}"
+  Log-Country: "{{ .Values.logcountry }}"
+  new-relic-app-name: "{{ .Values.new_relic_app_name }}"  
+  

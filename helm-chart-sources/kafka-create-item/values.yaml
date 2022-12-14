@@ -1,0 +1,62 @@
+# Default values for kafka-create-item.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# Common controls
+environment: dev
+application: kafka-create-item
+containerPort: 9080
+size: large
+
+hpa:
+  min: 1
+  max: 10
+  cpu: 75
+  memory: 75
+
+# Service controls
+service:
+  name: kafka-create-item-svc
+  type: ClusterIP
+  port: 9080
+
+# ingress controls
+ingress:
+  name: kafka-create-item-ing
+  clusterIssuer: letsencrypt
+  allowCredentials: "true"
+  allowHeaders: "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization,SessionId,api-key,token"
+  allowMethods: "*"
+  allowOrigin: "*"
+  enableCors: "true"
+  hostName: kafka-create-item-dev.11.11.111.111.nip.io
+  secretName: kafka-create-item-tls
+  path: "/"
+
+# Deployment controls
+restartPolicy: Always
+
+replicas: 1
+resources:
+  requests:
+    cpu: 1000m
+    memory: 1Gi
+  limits:
+    cpu: 3000m
+    memory: 4Gi
+
+image:
+  imagePullSecret: regcred
+  repository: cemulkerefe/kafka-create-item
+  tag: latest
+
+kafka_groupid: group_3
+kafka_createitem_concurrency: 10
+item_service_batch_size: 100
+country: kz
+product_name: cdp
+app_name: kafka-create-item
+
+registrySecret:
+  name: acr-registry
+  config: { "auths": { "docker.io": { "auth": "" } } }

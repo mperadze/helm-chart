@@ -1,0 +1,986 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/swagger/{url}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/swagger/{url}",
+      "UpstreamHttpMethod": ["Get"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/Authorize/Impersonate",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/Authorize/Impersonate",
+      "UpstreamHttpMethod": ["Get"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/Authorize/Login",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/Authorize/Login",
+      "UpstreamHttpMethod": ["Post"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      },
+      "FileCacheOptions": {
+        "TtlSeconds": 180
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/Authorize/Authorize",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/Authorize/Authorize",
+      "UpstreamHttpMethod": ["Post"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/Authorize/Logout",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/Authorize/Logout",
+      "UpstreamHttpMethod": ["Get"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/BottleCap/GetBottleCapCount",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/BottleCap/GetBottleCapCount",
+      "UpstreamHttpMethod": ["Post"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/BottleCap/AddBottleCap",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/BottleCap/AddBottleCap",
+      "UpstreamHttpMethod": ["Post"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/Goal/List",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/Goal/List",
+      "UpstreamHttpMethod": ["Get"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/Goal/Submit",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/Goal/Submit",
+      "UpstreamHttpMethod": ["Post"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/Order/GetOrderSiteUrl",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/Order/GetOrderSiteUrl",
+      "UpstreamHttpMethod": ["Get"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/PushNotification/GetPushNotifications",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/PushNotification/GetPushNotifications",
+      "UpstreamHttpMethod": ["Get"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/PushNotification/MarkPushNotificationAsRead",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/PushNotification/MarkPushNotificationAsRead",
+      "UpstreamHttpMethod": ["Get"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/Reward/GetGifts",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/Reward/GetGifts",
+      "UpstreamHttpMethod": ["Get"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/Reward/GetUserAccountBalance",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/Reward/GetUserAccountBalance",
+      "UpstreamHttpMethod": ["Get"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/Reward/ApplyGift",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/Reward/ApplyGift",
+      "UpstreamHttpMethod": ["Post"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/Reward/GetAllAccountHistory",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/Reward/GetAllAccountHistory",
+      "UpstreamHttpMethod": ["Post"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/Reward/GetAllAccountHistory",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/Reward/GetAllAccountHistory",
+      "UpstreamHttpMethod": ["Get"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/Reward/RedeemPoints",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/Reward/RedeemPoints",
+      "UpstreamHttpMethod": ["Post"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/Reward/GetPaymentDetail",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/Reward/GetPaymentDetail",
+      "UpstreamHttpMethod": ["Get"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/Reward/GetRewardCatalogueToken",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/Reward/GetRewardCatalogueToken",
+      "UpstreamHttpMethod": ["Get"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/Sm/GetSmUrl",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/Sm/GetSmUrl",
+      "UpstreamHttpMethod": ["Get"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/Sm/Sm/Token",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/Sm/Sm/Token",
+      "UpstreamHttpMethod": ["Post"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/Survey/Submit",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/Survey/Submit",
+      "UpstreamHttpMethod": ["Post"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/Survey/List",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/Survey/List",
+      "UpstreamHttpMethod": ["Get"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/Training/Submit",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/Training/Submit",
+      "UpstreamHttpMethod": ["Post"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/Training/GetVideo",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/Training/GetVideo",
+      "UpstreamHttpMethod": ["Get"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/Training/List",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/Training/List",
+      "UpstreamHttpMethod": ["Get"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/GetProfile",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/GetProfile",
+      "UpstreamHttpMethod": ["Get"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/Register",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/Register",
+      "UpstreamHttpMethod": ["Post"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/GetStaticContentDetail",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/GetStaticContentDetail",
+      "UpstreamHttpMethod": ["Get"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/GetStaticContents",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/GetStaticContents",
+      "UpstreamHttpMethod": ["Get"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/ResendActivationCode",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/ResendActivationCode",
+      "UpstreamHttpMethod": ["Post"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/SendOTP",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/SendOTP",
+      "UpstreamHttpMethod": ["Get"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/SendOTPEmail",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/SendOTPEmail",
+      "UpstreamHttpMethod": ["Get"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/ValidateOTP",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/ValidateOTP",
+      "UpstreamHttpMethod": ["Get"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/ForgotPasswordResendActivationCode",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/ForgotPasswordResendActivationCode",
+      "UpstreamHttpMethod": ["Post"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/GetOutletDetails",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/GetOutletDetails",
+      "UpstreamHttpMethod": ["Get"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/GetPermission",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/GetPermission",
+      "UpstreamHttpMethod": ["Get"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/GetPushMessages",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/GetPushMessages",
+      "UpstreamHttpMethod": ["Get"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/SetPassword",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/SetPassword",
+      "UpstreamHttpMethod": ["Post"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/UpdatePassword",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/UpdatePassword",
+      "UpstreamHttpMethod": ["Post"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/InfoActivation",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/InfoActivation",
+      "UpstreamHttpMethod": ["Post"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/InfoResendActivation",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/InfoResendActivation",
+      "UpstreamHttpMethod": ["Post"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/InfoSave",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/InfoSave",
+      "UpstreamHttpMethod": ["Post"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/SetLanguage",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/SetLanguage",
+      "UpstreamHttpMethod": ["Get"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/PointHistory",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/PointHistory",
+      "UpstreamHttpMethod": ["Post"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/UpdateUserSetting",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/UpdateUserSetting",
+      "UpstreamHttpMethod": ["Post"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/UploadPhotoDepreceated",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/UploadPhotoDepreceated",
+      "UpstreamHttpMethod": ["Post"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/UploadPhoto",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/UploadPhoto",
+      "UpstreamHttpMethod": ["Post"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/DeletePhoto",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/DeletePhoto",
+      "UpstreamHttpMethod": ["Get"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/GetBanner",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/GetBanner",
+      "UpstreamHttpMethod": ["Get"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/GetCampaign",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/GetCampaign",
+      "UpstreamHttpMethod": ["Get"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/EditItemValue",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/EditItemValue",
+      "UpstreamHttpMethod": ["Post"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/ReviewRewardToken",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/ReviewRewardToken",
+      "UpstreamHttpMethod": ["Get"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/KillAndRefreshRewardToken",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/KillAndRefreshRewardToken",
+      "UpstreamHttpMethod": ["Get"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/TargetedCampaignInfo",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/TargetedCampaignInfo",
+      "UpstreamHttpMethod": ["Get"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/ForgotPasswordActivation",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/ForgotPasswordActivation",
+      "UpstreamHttpMethod": ["Post"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/ForgotPassword",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/ForgotPassword",
+      "UpstreamHttpMethod": ["Post"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/Activate",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/Activate",
+      "UpstreamHttpMethod": ["Post"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/GetAccountPhoneNumbers",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/GetAccountPhoneNumbers",
+      "UpstreamHttpMethod": ["Post"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/SavePushNotification",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/SavePushNotification",
+      "UpstreamHttpMethod": ["Post"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/PasswordComplexity",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/PasswordComplexity",
+      "UpstreamHttpMethod": ["Get"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/GetAllTranslations",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/GetAllTranslations",
+      "UpstreamHttpMethod": ["Push"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/GetBalance",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/GetBalance",
+      "UpstreamHttpMethod": ["Get"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/User/CountlyUserProperties",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cdp-service-svc-kz-preprod.preprod-app.svc",
+          "Port": 5500
+        }
+      ],
+      "UpstreamPathTemplate": "/User/CountlyUserProperties",
+      "UpstreamHttpMethod": ["Get"],
+      "LoadBalancer": {
+        "Type": "LeastConnection"
+      }
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:5021",
+    "RequestIdKey": "OcRequestId"
+  }
+}

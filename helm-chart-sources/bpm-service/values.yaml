@@ -1,0 +1,76 @@
+# Default values for bpm-service.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# Common controls
+environment: dev
+application: bpm-service
+containerPort: 8087
+size: medium
+
+# Service controls
+service:
+  name: bpm-service-svc
+  type: ClusterIP
+  port: 8087
+
+hpa:
+  min: 1
+  max: 3
+  cpu: 75
+  memory: 75
+
+# ingress controls
+ingress:
+  name: bpm-service-ing
+  clusterIssuer: letsencrypt
+  allowCredentials: "true"
+  allowHeaders: "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization,SessionId,api-key,token"
+  allowMethods: "*"
+  allowOrigin: "*"
+  enableCors: "true"
+  hostName: bpm-service-dev.11.11.111.111.nip.io
+  secretName: bpm-service-tls
+  path: "/"
+
+livenessProbe:
+  enabled: false
+readinessProbe:
+  enabled: false
+
+# Deployment controls
+restartPolicy: Always
+
+replicas: 1
+resources:
+  requests:
+    cpu: 150m
+    memory: 500Mi
+  limits:
+    cpu: 500m
+    memory: 1Gi
+
+image:
+  imagePullSecret: regcred
+  repository: cemulkerefe/bpmservice
+  tag: latest
+
+country: KZ
+product_name: CDP
+app_name: bpm-service
+
+elasticconfiguration_port: "443"
+elasticconfiguration_scheme: https
+logcustomerid: efectura
+logproductname: cdp
+logcountry: kz
+logcomponentname: service
+logapplicationname: bpm
+new_relic_license_key:
+
+# ConfigMap controls
+urls: http://0.0.0.0:8087
+
+registrySecret:
+  name: acr-registry
+  config: { "auths": { "docker.io": { "auth": "" } } }

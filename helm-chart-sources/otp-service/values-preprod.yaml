@@ -1,0 +1,57 @@
+# Default values for otp-service PREPROD.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+environment: kz-preprod
+
+# ingress controls
+ingress:
+  name: otp-service-ing
+  clusterIssuer: letsencrypt
+  allowCredentials: "true"
+  allowHeaders: "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization,SessionId,api-key,token"
+  allowMethods: "*"
+  allowOrigin: "*"
+  enableCors: "true"
+  hostName: preprod-kz-cdp-otp-service-local.hostname.com
+  secretName: hostname-wildcard-tls-preprod-app-ns
+  path: "/"
+  className: internal-nginx
+
+image:
+  repository: cemulkerefe/otp-service
+  tag: latest
+
+applicationinsights_instrumentationkey: "0000000-0000-4ff3-0000-00000008"
+connection_string_default_conn: "Data Source=11.111.11.111;Initial Catalog=CDPKZPreProd;Persist Security Info=True;User ID= cdppreproduser;Password=123456;MultipleActiveResultSets=True;"
+services_fletumurl: "https://preprod-api.azurewebsites.net/api/"
+elasticconfiguration_uri: "elk-preprod.es.westeurope.azure.elastic-cloud.com"
+elasticconfiguration_username: "logger"
+elasticconfiguration_password: "0080000H0000x"
+isapikeyenabled: "false"
+serilogminimumlevel: "Error"
+connection_string: "Data Source=11.111.11.111;Initial Catalog=CDPKZPreProd;Persist Security Info=True;User ID= cdppreproduser;Password=123456;MultipleActiveResultSets=True;"
+
+logminimumlevel: INFO
+new_relic_app_name: otp-service-kz-preprod
+
+livenessProbe:
+  enabled: true
+  httpGet:
+    path: "/swagger/index.html"
+    port: 8089
+  initialDelaySeconds: 20
+  periodSeconds: 10
+  timeoutSeconds: 10
+  failureThreshold: 10
+  successThreshold: 1
+readinessProbe:
+  enabled: true
+  httpGet:
+    path: "/swagger/index.html"
+    port: 8089
+  initialDelaySeconds: 15
+  periodSeconds: 10
+  timeoutSeconds: 10
+  failureThreshold: 10
+  successThreshold: 1

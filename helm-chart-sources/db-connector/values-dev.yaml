@@ -1,0 +1,62 @@
+# Default values for db-connector DEV.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+environment: dev
+
+# ingress controls
+ingress:
+  name: db-connector-ing
+  clusterIssuer: letsencrypt
+  allowCredentials: "true"
+  allowHeaders: "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization,SessionId,api-key,token"
+  allowMethods: "*"
+  allowOrigin: "*"
+  enableCors: "true"
+  hostName: dev-kz-cdp-db-connector-local.hostname.com
+  secretName: hostname-wildcard-tls-cdp-dev-int-ns
+  path: "/"
+  className: internal-nginx
+image:
+  repository: cemulkerefe/db-connector
+  tag: latest
+
+spring_kafka_bootstrap_servers: kafka-cluster-dev-kafka-bootstrap.cdp-dev-kafka.svc:9092
+fletum_api_url: https://dev-fletum-api.azurewebsites.net
+applicationinsights_instrumentationkey: 00000-0000-0000-0000-e0273a105a61
+elasticconfiguration_uri: "https://elk-dev.es.westeurope.azure.elastic-cloud.com:443"
+elasticconfiguration_username: "logger"
+elasticconfiguration_password: "password"
+elasticconfiguration_kb_uri: "https://elk-dev.kb.westeurope.azure.elastic-cloud.com:443"
+elasticconfiguration_kb_username: "logger"
+elasticconfiguration_kb_password: "password"
+isapikeyenabled: "true"
+logging_level_root: "Error"
+env_name: DEV
+direct_connection: true
+cep_module_url: http://cep-module-svc-dev:7070
+entity_module_url: http://item-service-svc-dev:8090
+
+new_relic_app_name:
+new_relic_license_key:
+
+livenessProbe:
+  enabled: true
+  httpGet:
+    path: "/swagger-ui.html"
+    port: 7081
+  initialDelaySeconds: 20
+  periodSeconds: 10
+  timeoutSeconds: 10
+  failureThreshold: 10
+  successThreshold: 1
+readinessProbe:
+  enabled: true
+  httpGet:
+    path: "/swagger-ui.html"
+    port: 7081
+  initialDelaySeconds: 15
+  periodSeconds: 10
+  timeoutSeconds: 10
+  failureThreshold: 10
+  successThreshold: 1

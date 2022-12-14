@@ -1,0 +1,75 @@
+# Default values for csv-service DEV.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+environment: kz-prod
+size: xlarge
+
+pvc:
+  name: pvc-cep-module-kz-prod
+  storage: 8Ti
+  storageclassname: default
+  mountfolder: "/Kafka"
+  accessModes: ReadWriteOnce
+
+resources:
+  requests:
+    cpu: 1
+    memory: 48Gi
+  limits:
+    cpu: 14000m
+    memory: 48Gi
+
+# ingress controls
+ingress:
+  name: cep-module-ing
+  allowCredentials: "true"
+  allowHeaders: "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization,SessionId,api-key,token"
+  allowMethods: "*"
+  allowOrigin: "*"
+  enableCors: "true"
+  hostName: kz-cdp-cep-module-local.hostname.com
+  secretName: hostname-com-tls
+  path: "/"
+  className: internal-nginx
+
+image:
+  repository: cemulkerefe/cep-module
+  tag: latest
+
+kafka_bootstrap_server: kafka-cluster-kz-prod-kafka-bootstrap.prod-kafka.svc:9092
+cci_os_url: http://cdp-service-svc-kz-prod.prod-app.svc:5500
+applicationinsights_instrumentationkey: "InstrumentationKey=63b7b0f7-0000-4b5b-0000-0000000;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/"
+elasticconfiguration_uri: "https://elk-prod.es.westeurope.azure.elastic-cloud.com:443"
+elasticconfiguration_username: "logger"
+elasticconfiguration_password: "password"
+elasticconfiguration_kb_uri: "https://elk-prod.kb.westeurope.azure.elastic-cloud.com:443"
+elasticconfiguration_kb_username: "logger"
+elasticconfiguration_kb_password: "password"
+isapikeyenabled: "false"
+fletum_api_url: "https://prod-api.azurewebsites.net"
+thread_count: 12
+thread_capacity: 10000
+
+new_relic_app_name: cep-module-service-kz-prod
+
+livenessProbe:
+  enabled: true
+  httpGet:
+    path: "/swagger-ui.html"
+    port: 7070
+  initialDelaySeconds: 20
+  periodSeconds: 10
+  timeoutSeconds: 10
+  failureThreshold: 10
+  successThreshold: 1
+readinessProbe:
+  enabled: true
+  httpGet:
+    path: "/swagger-ui.html"
+    port: 7070
+  initialDelaySeconds: 15
+  periodSeconds: 10
+  timeoutSeconds: 10
+  failureThreshold: 10
+  successThreshold: 1

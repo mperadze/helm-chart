@@ -1,0 +1,54 @@
+# Default values for api-gateway TEST.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+environment: test
+
+# ingress controls
+ingress:
+  name: api-gateway-ing
+  clusterIssuer: letsencrypt
+  allowCredentials: "true"
+  allowHeaders: "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization,SessionId,api-key"
+  allowMethods: "*"
+  allowOrigin: "*"
+  enableCors: "true"
+  hostName: qa-kz-cdp-api-gw-local.hostname.com
+  secretName: hostname-wildcard-tls-cdp-tes-app-ns
+  path: "/"
+  className: internal-nginx
+
+image:
+  repository: cemulkerefe/api-gateway
+  tag: 2.6.14
+
+elasticconfiguration_uri: "elk-qa.es.westeurope.azure.elastic-cloud.com"
+elasticconfiguration_username: "logger"
+elasticconfiguration_password: "password"
+applicationinsights_instrumentationkey: 000000-0000-0000-0000-b0058d100000
+isapikeyenabled: "true"
+
+livenessProbe:
+  enabled: true
+  httpGet:
+    path: "/swagger/index.html"
+    port: 9201
+  initialDelaySeconds: 20
+  periodSeconds: 10
+  timeoutSeconds: 10
+  failureThreshold: 10
+  successThreshold: 1
+readinessProbe:
+  enabled: true
+  httpGet:
+    path: "/swagger/index.html"
+    port: 9201
+  initialDelaySeconds: 15
+  periodSeconds: 10
+  timeoutSeconds: 10
+  failureThreshold: 10
+  successThreshold: 1
+
+logminimumlevel: INFO
+new_relic_app_name:
+new_relic_license_key:

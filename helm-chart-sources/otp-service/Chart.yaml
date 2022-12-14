@@ -1,0 +1,4 @@
+apiVersion: v1
+description: A Helm chart for otp-service
+name: otp-service
+version: 1.0.0

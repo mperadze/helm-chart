@@ -1,0 +1,4 @@
+apiVersion: v1
+description: A Helm chart for cep-module
+name: cep-module
+version: 1.0.0

@@ -1,0 +1,12 @@
+# Default values for camunda DEV.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+environment: dev
+db_url: jdbc:postgresql://postgres-svc-dev:5432/process-engine
+db_username: camunda_user
+db_password: 7CQfSuMM8Q7kaUp9
+elasticconfiguration_uri: "https://elk-dev.es.westeurope.azure.elastic-cloud.com/"
+elasticconfiguration_username: "logger"
+elasticconfiguration_password: "password"
+isapikeyenabled: "true"

@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm-{{ .Values.application }}-{{ .Values.environment }}
+  namespace: {{ .Release.Namespace }}
+data:
+  urls: "{{ .Values.urls }}"
+  applicationinsights-instrumentationkey: "{{ .Values.applicationinsights_instrumentationkey }}"
+  elasticconfiguration-uri: "{{ .Values.elasticconfiguration_uri }}"
+  elasticconfiguration-username: "{{ .Values.elasticconfiguration_username }}"
+  isapikeyenabled: "{{ .Values.isapikeyenabled }}"
+  serilogminimumlevel: "{{ .Values.serilogminimumlevel }}"
+  country: "{{ .Values.country }}"
+  product_name: "{{ .Values.product_name }}"
+  app_name: "{{ .Values.app_name }}"
+  fletum_api_url: "{{ .Values.fletum_api_url }}"
+  elasticconfiguration-port: "{{ .Values.elasticconfiguration_port }}"
+  elasticconfiguration-scheme: "{{ .Values.elasticconfiguration_scheme }}"
+  Log-CustomerId: "{{ .Values.logcustomerid }}"
+  Log-ApplicationName: "{{ .Values.logapplicationname }}"
+  Log-ComponentName: "{{ .Values.logcomponentname }}"
+  Log-ProductName: "{{ .Values.logproductname }}"
+  Log-Country: "{{ .Values.logcountry }}"
+  Log-MinimumLevel: "{{ .Values.logminimumlevel }}"
+  new-relic-app-name: "{{ .Values.new_relic_app_name }}"  

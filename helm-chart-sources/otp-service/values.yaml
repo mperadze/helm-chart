@@ -1,0 +1,94 @@
+# Default values for otp-service.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# Common controls
+environment: dev
+application: otp-service
+containerPort: 8089
+size: medium
+
+# Service controls
+service:
+  name: otp-service-svc
+  type: ClusterIP
+  port: 8089
+
+hpa:
+  min: 1
+  max: 10
+  cpu: 75
+  memory: 75
+
+# ingress controls
+ingress:
+  name: otp-service-ing
+  clusterIssuer: letsencrypt
+  allowCredentials: "true"
+  allowHeaders: "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization,SessionId,api-key,token"
+  allowMethods: "*"
+  allowOrigin: "*"
+  enableCors: "true"
+  hostName: otp-service-dev.11.11.111.111.nip.io
+  secretName: otp-service-tls
+  path: "/"
+
+# Deployment controls
+restartPolicy: Always
+
+replicas: 1
+resources:
+  requests:
+    cpu: 150m
+    memory: 500Mi
+  limits:
+    cpu: 500m
+    memory: 1Gi
+
+image:
+  imagePullSecret: regcred
+  repository: cemulkerefe/otp-service
+  tag: latest
+
+country: KZ
+product_name: CDP
+app_name: otp-service
+
+# ConfigMap controls
+urls: http://0.0.0.0:8089
+sms_settings_url: "http://processor.smsorigin.com/xml/process.aspx"
+sms_settings_channel_code: "450"
+sms_settings_user_name: "otpcocacola"
+sms_settings_password: "5320385045"
+smtp_settings_server: "smtp.office365.com"
+smtp_settings_port: "587"
+smtp_settings_isssl: "true"
+smtp_settings_email: "mail@mail.com"
+smtp_settings_password: "00000000"
+smpp_settings_systemid: ""
+smpp_settings_port: "0"
+smpp_settings_host: ""
+smpp_settings_password: ""
+kz_sms_settings_user_name: "cciloyalti"
+kz_sms_settings_id: "Identificaiton"
+kz_sms_settings_sender: "MESSAGE"
+kz_sms_settings_password: "sX0NZ9Wd"
+
+new_relic_license_key:
+elasticconfiguration_port: 443
+elasticconfiguration_scheme: https
+logcustomerid: efectura
+logproductname: cdp
+logcountry: kz
+logcomponentname: service
+logapplicationname: otp
+
+# liveness-readness
+livenessProbe:
+  enabled: false
+readinessProbe:
+  enabled: false
+
+registrySecret:
+  name: acr-registry
+  config: { "auths": { "docker.io": { "auth": "" } } }

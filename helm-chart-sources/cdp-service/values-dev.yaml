@@ -1,0 +1,67 @@
+# Default values for cdp-service DEV.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+environment: dev
+
+# ingress controls
+ingress:
+  name: cdp-service-ing
+  clusterIssuer: letsencrypt
+  allowCredentials: "true"
+  allowHeaders: "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization,SessionId,api-key,token"
+  allowMethods: "*"
+  allowOrigin: "*"
+  enableCors: "true"
+  hostName: dev-kz-cdp-service-local.hostname.com
+  secretName: hostname-wildcard-tls-cdp-dev-app-ns
+  path: "/"
+  className: internal-nginx
+
+image:
+  repository: cemulkerefe/cdpservice
+  tag: latest
+
+fletum_api_base_url: https://dev-api.azurewebsites.net
+create_entity_base_url: https://dev-api.azurewebsites.net
+validation_microservice_base_url: http://validation-service-svc-dev:8010
+identity_microservice_base_url: http://identity-service-svc-dev:8989
+otp_service_base_url: http://otp-service-svc-dev:8089
+cep_module_base_url: http://cep-module-svc-dev.cdp-dev-integration.svc:7070
+connection_string_default_conn: "Data Source=11.111.11.111;Initial Catalog=CDPDev;Persist Security Info=True;User ID=cdpdevuser;Password=123456;MultipleActiveResultSets=True;"
+connection_string_staging_conn: "Data Source=11.111.11.111;Initial Catalog=CCICDPDevIntegration;Persist Security Info=True;User ID=cdpdevuser;Password=123456;MultipleActiveResultSets=True;"
+fletum_web_base_url: https://dev.azurewebsites.net
+applicationinsights_instrumentationkey: 000-000-000-000-0000
+cciordersecuritykey: cci
+voyageorderurl: https://kz-orderqa.hostname.com/Member/LoginByToken?
+elasticconfiguration_uri: "dev.es.westeurope.azure.elastic-cloud.com"
+elasticconfiguration_username: "logger"
+elasticconfiguration_password: "123456"
+isapikeyenabled: "true"
+serilogminimumlevel: "Error"
+IsCache: "false"
+jwt_configuration_security_key: "4cd5d3c088ca102a24bad8339b4dd06c7964a1f05c54d9cb48e1dc710146b722"
+
+logminimumlevel: INFO
+new_relic_app_name: cdp-service-kz-dev
+
+livenessProbe:
+  enabled: true
+  httpGet:
+    path: "/swagger/index.html"
+    port: 5500
+  initialDelaySeconds: 20
+  periodSeconds: 10
+  timeoutSeconds: 10
+  failureThreshold: 10
+  successThreshold: 1
+readinessProbe:
+  enabled: true
+  httpGet:
+    path: "/swagger/index.html"
+    port: 5500
+  initialDelaySeconds: 15
+  periodSeconds: 10
+  timeoutSeconds: 10
+  failureThreshold: 10
+  successThreshold: 1

@@ -1,0 +1,71 @@
+# Default values for identity-service PREPROD.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+environment: kz-preprod
+
+# ingress controls
+ingress:
+  name: identity-service-ing
+  clusterIssuer: letsencrypt
+  allowCredentials: "true"
+  allowHeaders: "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization,SessionId,api-key,token"
+  allowMethods: "*"
+  allowOrigin: "*"
+  enableCors: "true"
+  hostName: preprod-kz-cdp-identity-service-local.hostname.com
+  secretName: hostname-wildcard-tls-preprod-app-ns
+  path: "/"
+  className: internal-nginx
+
+image:
+  repository: cemulkerefe/identity-service
+  tag: latest
+
+fletumapiurl: "https://preprod-api.azurewebsites.net"
+connection_string_default_conn: "Data Source=11.111.11.111;Initial Catalog=CDPKZPreProd;Persist Security Info=True;User ID= cdppreproduser;Password=123456;MultipleActiveResultSets=True;"
+jwt_configuration_security_key: "4cd5d3c088ca102a24bad8339b4dd06c7964a1f05c54d9cb48e1dc710146b722"
+applicationinsights_instrumentationkey: "0000000-0000-4ff3-0000-00000008"
+elasticconfiguration_uri: "elk-preprod.es.westeurope.azure.elastic-cloud.com"
+elasticconfiguration_username: "logger"
+elasticconfiguration_password: "0080000H0000x"
+isapikeyenabled: "false"
+serilogminimumlevel: "Debug"
+
+resources:
+  requests:
+    cpu: 1000m
+    memory: 500Mi
+  limits:
+    cpu: 1500m
+    memory: 1Gi
+
+hpa:
+  min: 1
+  max: 3
+  cpu: 75
+  memory: 75
+
+logminimumlevel: INFO
+new_relic_app_name: identity-service-kz-preprod
+
+livenessProbe:
+  enabled: true
+  httpGet:
+    path: "/swagger/index.html"
+    port: 8989
+  initialDelaySeconds: 20
+  periodSeconds: 10
+  timeoutSeconds: 10
+  failureThreshold: 10
+  successThreshold: 1
+readinessProbe:
+  enabled: true
+  httpGet:
+    path: "/swagger/index.html"
+    port: 8989
+  initialDelaySeconds: 15
+  periodSeconds: 10
+  timeoutSeconds: 10
+  failureThreshold: 10
+  successThreshold: 1

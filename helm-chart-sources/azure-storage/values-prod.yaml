@@ -1,0 +1,58 @@
+# Default values for azure-storage prod.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+environment: kz-prod
+
+# ingress controls
+ingress:
+  name: azure-storage-ing
+  pullPolicy: Always
+  allowCredentials: "true"
+  allowHeaders: "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization,SessionId,api-key,token"
+  allowMethods: "*"
+  allowOrigin: "*"
+  enableCors: "true"
+  hostName: kz-cdp-storage-local.hostname.com
+  secretName: hostname-com-tls
+  path: "/"
+  className: internal-nginx
+
+image:
+  repository: cemulkerefe/azure-storage
+  tag: latest
+  pullPolicy: Always
+
+fletumapiurl: "https://prod-api.azurewebsites.net/api/"
+fletumweburl: "https://prod-web.azurewebsites.net"
+connectionstrings_defaultconnection: "DefaultEndpointsProtocol=https;AccountName=cdpprodkz;AccountKey=NptzUsYufIa/ugw3ynsGtSEazp0000000000000IjaOgOXpCyJFXLCjxjUN8Fo+AStn08BBw==;EndpointSuffix=core.windows.net"
+azurestoragekey: "NptzUsYufIa/ugw3ynsGtSEazpycb0000000000XpCyJFXLCjxjUN8Fo+AStn08BBw=="
+elasticconfiguration_uri: "https://elk-prod.es.westeurope.azure.elastic-cloud.com/"
+elasticconfiguration_username: "logger"
+elasticconfiguration_password: "password"
+isapikeyenabled: "false"
+serilogminimumlevel: "Error"
+
+logminimumlevel: INFO
+new_relic_app_name: azure-storage-service-kz-prod
+
+livenessProbe:
+  enabled: true
+  httpGet:
+    path: "/swagger/index.html"
+    port: 9020
+  initialDelaySeconds: 20
+  periodSeconds: 10
+  timeoutSeconds: 10
+  failureThreshold: 10
+  successThreshold: 1
+readinessProbe:
+  enabled: true
+  httpGet:
+    path: "/swagger/index.html"
+    port: 9020
+  initialDelaySeconds: 15
+  periodSeconds: 10
+  timeoutSeconds: 10
+  failureThreshold: 10
+  successThreshold: 1

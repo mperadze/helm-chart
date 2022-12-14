@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm-{{ .Values.application }}-{{ .Values.environment }}
+  namespace: {{ .Release.Namespace }}
+data:
+  urls: "{{ .Values.urls }}"
+  services_jobserviceurl: "{{ .Values.services_jobserviceurl }}"
+  services_fletumurl: "{{ .Values.services_fletumurl }}"
+  services_fletumjobapiurl: "{{ .Values.services_fletumjobapiurl }}"
+  project_name: "{{ .Values.project_name }}"
+  account_username: "{{ .Values.account_username }}"
+  account_password: "{{ .Values.account_password }}"
+  connectionstrings_database: "{{ .Values.connectionstrings_database }}"
+  applicationinsights-instrumentationkey: "{{ .Values.applicationinsights_instrumentationkey }}"
+  elasticconfiguration-uri: "{{ .Values.elasticconfiguration_uri }}"
+  elasticconfiguration-username: "{{ .Values.elasticconfiguration_username }}"
+  isapikeyenabled: "{{ .Values.isapikeyenabled }}"

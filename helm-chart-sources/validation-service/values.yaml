@@ -1,0 +1,77 @@
+# Default values for validation-service.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# Common controls
+environment: dev
+application: validation-service
+containerPort: 8010
+size: medium
+
+# Service controls
+service:
+  name: validation-service-svc
+  type: ClusterIP
+  port: 8010
+
+hpa:
+  min: 2
+  max: 10
+  cpu: 75
+  memory: 75
+
+# ingress controls
+ingress:
+  name: validation-service-ing
+  clusterIssuer: letsencrypt
+  allowCredentials: "true"
+  allowHeaders: "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization,SessionId,api-key,token"
+  allowMethods: "*"
+  allowOrigin: "*"
+  enableCors: "true"
+  hostName: validation-service-dev.11.11.111.111.nip.io
+  secretName: validation-service-tls
+  path: "/"
+
+# Deployment controls
+restartPolicy: Always
+
+replicas: 1
+resources:
+  requests:
+    cpu: 150m
+    memory: 500Mi
+  limits:
+    cpu: 500m
+    memory: 1Gi
+
+image:
+  imagePullSecret: regcred
+  repository: cemulkerefe/validation-service
+  tag: latest
+
+country: KZ
+product_name: CDP
+app_name: validation-service
+
+# ConfigMap controls
+urls: http://0.0.0.0:8010
+
+registrySecret:
+  name: acr-registry
+  config: { "auths": { "docker.io": { "auth": "" } } }
+
+new_relic_license_key:
+elasticconfiguration_port: 443
+elasticconfiguration_scheme: https
+logcustomerid: efectura
+logproductname: cdp
+logcountry: kz
+logcomponentname: service
+logapplicationname: validation
+
+# liveness-readness
+livenessProbe:
+  enabled: false
+readinessProbe:
+  enabled: false

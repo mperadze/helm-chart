@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm-{{ .Values.application }}-{{ .Values.environment }}
+  namespace: {{ .Release.Namespace }}
+data:
+  elasticconfiguration-uri: "{{ .Values.elasticconfiguration_uri }}"
+  elasticconfiguration-username: "{{ .Values.elasticconfiguration_username }}"
+  serilogminimumlevel: "{{ .Values.serilogminimumlevel }}"
+  isapikeyenabled: "{{ .Values.isapikeyenabled }}"

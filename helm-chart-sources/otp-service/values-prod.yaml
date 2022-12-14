@@ -1,0 +1,57 @@
+# Default values for otp-service PROD.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+environment: kz-prod
+
+# ingress controls
+ingress:
+  name: otp-service-ing
+  clusterIssuer: letsencrypt
+  allowCredentials: "true"
+  allowHeaders: "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization,SessionId,api-key,token"
+  allowMethods: "*"
+  allowOrigin: "*"
+  enableCors: "true"
+  hostName: kz-cdp-otp-service-local.hostname.com
+  secretName: hostname-com-tls
+  path: "/"
+  className: internal-nginx
+
+image:
+  repository: cemulkerefe/otp-service
+  tag: latest
+  pullPolicy: Always
+
+applicationinsights_instrumentationkey: 20d30000-0000-0000-0000-433f23e80000
+connection_string: "Data Source=10.2.100.10;Initial Catalog=CDPKZProd;Persist Security Info=True;User ID=cdpkzproduser;Password=123456;MultipleActiveResultSets=True;Application Name=otp-service-kz-prod"
+services_fletumurl: https://prod-api.azurewebsites.net/api/
+elasticconfiguration_uri: "https://elk-prod.es.westeurope.azure.elastic-cloud.com/"
+elasticconfiguration_username: "logger"
+elasticconfiguration_password: "password"
+isapikeyenabled: "true"
+serilogminimumlevel: "Error"
+
+logminimumlevel: INFO
+new_relic_app_name: otp-service-kz-prod
+
+livenessProbe:
+  enabled: true
+  httpGet:
+    path: "/swagger/index.html"
+    port: 8089
+  initialDelaySeconds: 20
+  periodSeconds: 10
+  timeoutSeconds: 10
+  failureThreshold: 10
+  successThreshold: 1
+readinessProbe:
+  enabled: true
+  httpGet:
+    path: "/swagger/index.html"
+    port: 8089
+  initialDelaySeconds: 15
+  periodSeconds: 10
+  timeoutSeconds: 10
+  failureThreshold: 10
+  successThreshold: 1

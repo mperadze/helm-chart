@@ -1,0 +1,4 @@
+apiVersion: v1
+description: A Helm chart for validation-service
+name: validation-service
+version: 1.0.0

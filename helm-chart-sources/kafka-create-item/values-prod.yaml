@@ -1,0 +1,35 @@
+# Default values for kafka-create-item PROD.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+environment: prod
+
+# ingress controls
+ingress:
+  name: kafka-create-item-ing
+  allowCredentials: "true"
+  allowHeaders: "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization,SessionId,api-key,token"
+  allowMethods: "*"
+  allowOrigin: "*"
+  enableCors: "true"
+  hostName: kz-cdp-kafka-create-item-local.hostname.com
+  secretName: hostname-com-tls
+  path: "/"
+  className: internal-nginx
+
+image:
+  repository: cemulkerefe/kafka-create-item
+  tag: latest
+
+spring_kafka_bootstrap_servers: kafka-cluster-prod-kafka-bootstrap.cdp-prod-kafka.svc:9092
+fletum_api_url: https://kz-cdp-api.hostname.com
+applicationinsights_instrumentationkey: 20d30000-0000-0000-0000-433f23e80000
+elasticconfiguration_uri: "https://elk-prod.es.westeurope.azure.elastic-cloud.com:443"
+elasticconfiguration_username: "logger"
+elasticconfiguration_password: "password"
+elasticconfiguration_kb_uri: "https://elk-prod.kb.westeurope.azure.elastic-cloud.com:443"
+elasticconfiguration_kb_username: "logger"
+elasticconfiguration_kb_password: "password"
+isapikeyenabled: "false"
+item_service_url: "http://item-service-svc-prod:8090"
+logging_level_root: "Error"

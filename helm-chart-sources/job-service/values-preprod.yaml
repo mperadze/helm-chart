@@ -1,0 +1,32 @@
+# Default values for job-service PREPROD.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+environment: preprod
+
+# ingress controls
+ingress:
+  name: job-service-ing
+  clusterIssuer: letsencrypt
+  allowCredentials: "true"
+  allowHeaders: "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization,SessionId,api-key,token"
+  allowMethods: "*"
+  allowOrigin: "*"
+  enableCors: "true"
+  hostName: job-service-preprod.11.111.111.11.nip.io
+  secretName: job-service-tls
+  path: "/"
+
+image:
+  repository: cemulkerefe/job-service
+  tag: latest
+
+services_fletumurl: https://preprod-api.azurewebsites.net/api/
+services_fletumjobapiurl: https://preprod-api.azurewebsites.net/api/Job
+account_username: admin
+account_password: admin1
+applicationinsights_instrumentationkey: 0000000-0000-4ff3-0000-00000008
+elasticconfiguration_uri: "https://elk-qa.es.westeurope.azure.elastic-cloud.com/"
+elasticconfiguration_username: "logger"
+elasticconfiguration_password: "password"
+isapikeyenabled: "false"

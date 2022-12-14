@@ -1,0 +1,12 @@
+# Default values for camunda TEST.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+environment: test
+postgres_password: 7CQfSuMM8Q7kaUp9
+postgres_db: process-engine
+postgres_user: camunda_user
+elasticconfiguration_uri: "https://elk-qa.es.westeurope.azure.elastic-cloud.com/"
+elasticconfiguration_username: "logger"
+elasticconfiguration_password: "password"
+isapikeyenabled: "true"

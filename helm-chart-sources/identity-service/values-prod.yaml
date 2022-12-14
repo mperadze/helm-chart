@@ -1,0 +1,64 @@
+# Default values for identity-service PROD.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+environment: kz-prod
+
+# ingress controls
+ingress:
+  name: identity-service-ing
+  clusterIssuer: letsencrypt
+  allowCredentials: "true"
+  allowHeaders: "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization,SessionId,api-key,token"
+  allowMethods: "*"
+  allowOrigin: "*"
+  enableCors: "true"
+  hostName: kz-cdp-identity-service-local.hostname.com
+  secretName: hostname-com-tls
+  path: "/"
+  className: internal-nginx
+
+image:
+  repository: cemulkerefe/identity-service
+  tag: latest
+  pullPolicy: Always
+
+fletumapiurl: "https://prod-api.azurewebsites.net"
+connection_string_default_conn: "Data Source=10.2.100.10;Initial Catalog=CDPKZProd;Persist Security Info=True;User ID=cdpkzproduser;Password=123456;MultipleActiveResultSets=True;Application Name=prod-ui"
+jwt_configuration_security_key: "4cd5d3c088ca102a24bad8339b4dd06c7964a1f05c54d9cb48e1dc710146b722"
+applicationinsights_instrumentationkey: 000000-00000-00000-000000-0000000000
+elasticconfiguration_uri: "https://elk-prod.es.westeurope.azure.elastic-cloud.com/"
+elasticconfiguration_username: "logger"
+elasticconfiguration_password: "password"
+isapikeyenabled: "false"
+serilogminimumlevel: "Debug"
+
+hpa:
+  min: 1
+  max: 3
+  cpu: 75
+  memory: 75
+
+logminimumlevel: INFO
+new_relic_app_name: identity-service-kz-prod
+
+livenessProbe:
+  enabled: true
+  httpGet:
+    path: "/swagger/index.html"
+    port: 8989
+  initialDelaySeconds: 20
+  periodSeconds: 10
+  timeoutSeconds: 10
+  failureThreshold: 10
+  successThreshold: 1
+readinessProbe:
+  enabled: true
+  httpGet:
+    path: "/swagger/index.html"
+    port: 8989
+  initialDelaySeconds: 15
+  periodSeconds: 10
+  timeoutSeconds: 10
+  failureThreshold: 10
+  successThreshold: 1

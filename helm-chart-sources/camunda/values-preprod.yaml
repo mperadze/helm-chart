@@ -1,0 +1,12 @@
+# Default values for camunda PREPROD.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+environment: preprod
+db_url: jdbc:postgresql://postgres-svc-preprod:5432/process-engine
+db_username: camunda_user
+db_password: 7V5VDSdBVTnWEH7r
+elasticconfiguration_uri: "https://elk-qa.es.westeurope.azure.elastic-cloud.com/"
+elasticconfiguration_username: "logger"
+elasticconfiguration_password: "password"
+isapikeyenabled: "false"

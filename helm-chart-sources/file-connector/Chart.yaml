@@ -1,0 +1,4 @@
+apiVersion: v1
+description: A Helm chart for file-connector
+name: file-connector
+version: 1.0.0

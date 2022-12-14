@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm-{{ .Values.application }}-{{ .Values.environment }}
+  namespace: {{ .Release.Namespace }}
+data:
+  spring_kafka_bootstrap_servers: "{{ .Values.spring_kafka_bootstrap_servers }}"
+  fletum_api_url: "{{ .Values.fletum_api_url }}"
+  applicationinsights-instrumentationkey: "{{ .Values.applicationinsights_instrumentationkey }}"
+  elasticconfiguration-uri: "{{ .Values.elasticconfiguration_uri }}"
+  elasticconfiguration-username: "{{ .Values.elasticconfiguration_username }}"
+  elasticconfiguration-kb-uri: "{{ .Values.elasticconfiguration_kb_uri }}"
+  elasticconfiguration-kb-username: "{{ .Values.elasticconfiguration_kb_username }}"
+  isapikeyenabled: "{{ .Values.isapikeyenabled }}"
+  kafka-groupid: "{{ .Values.kafka_groupid }}"
+  kafka-createitem-concurrency: "{{ .Values.kafka_createitem_concurrency }}"
+  item_service_batch_size: "{{ .Values.item_service_batch_size }}"
+  item_service_url: "{{ .Values.item_service_url }}"
+  logging_level_root: "{{ .Values.logging_level_root }}"
+  country: "{{ .Values.country }}"
+  product_name: "{{ .Values.product_name }}"
+  app_name: "{{ .Values.app_name }}"

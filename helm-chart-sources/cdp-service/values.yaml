@@ -1,0 +1,92 @@
+# Default values for cdp-service.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# Common controls
+environment: dev
+application: cdp-service
+containerPort: 5500
+size: large
+
+# Service controls
+service:
+  name: cdp-service-svc
+  type: ClusterIP
+  port: 5500
+
+hpa:
+  min: 1
+  max: 5
+  cpu: 75
+  memory: 75
+
+# ingress controls
+ingress:
+  name: cdp-service-ing
+  clusterIssuer: letsencrypt
+  allowCredentials: "true"
+  allowHeaders: "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization,SessionId,api-key,token"
+  allowMethods: "*"
+  allowOrigin: "*"
+  enableCors: "true"
+  hostName: cdp-service-dev.11.111.111.111.nip.io
+  secretName: cdp-service-tls
+  path: "/"
+
+# Deployment controls
+restartPolicy: Always
+
+replicas: 1
+resources:
+  requests:
+    cpu: 1000m
+    memory: 3Gi
+  limits:
+    cpu: 1500m
+    memory: 5Gi
+
+image:
+  imagePullSecret: regcred
+  repository: cemulkerefe/cdpservice
+  tag: latest
+
+country: KZ
+product_name: CDP
+app_name: cdp-service
+
+CacheTimespan: "0"
+
+QueueSize: "50"
+QueueDelay: "1000"
+QueueEnabled: "false"
+
+IsCache: "false"
+
+jwt_configuration_issuer: "http://0.0.0.0:8989"
+jwt_configuration_audience: "http://0.0.0.0:8989"
+
+# ConfigMap and secret seperated controls
+urls: http://0.0.0.0:5500
+###### SECRETS ######
+connection_string_default_conn: "Data Source=11.11.111.111;Initial Catalog=CCICDPTest;Persist Security Info=True;User ID=dcxcdpdevuser;Password=123456;MultipleActiveResultSets=True;"
+telegram_chatid: "-000000000"
+telegram_key: "0000000000000000000"
+
+registrySecret:
+  name: acr-registry
+  config: { "auths": { "docker.io": { "auth": "" } } }
+
+new_relic_license_key:
+elasticconfiguration_port: 443
+elasticconfiguration_scheme: https
+logcustomerid: efectura
+logproductname: cdp
+logcountry: kz
+logcomponentname: service
+logapplicationname: cdp
+
+# liveness-readness
+livenessProbe:
+  enabled: false
+readinessProbe:
+  enabled: false

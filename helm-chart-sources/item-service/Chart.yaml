@@ -1,0 +1,4 @@
+apiVersion: v1
+description: A Helm chart for search-service
+name: search-service
+version: 1.0.0

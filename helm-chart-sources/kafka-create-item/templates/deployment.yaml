@@ -1,0 +1,123 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.application }}-{{ .Values.environment }}
+  labels:
+    app: {{ .Values.application }}-{{ .Values.environment }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.application }}-{{ .Values.environment }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.application }}-{{ .Values.environment }}
+    spec:
+      restartPolicy: 
+      imagePullSecrets:
+      - name: {{ .Values.image.imagePullSecret }}
+      containers:
+      - name: {{ .Values.application }}
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        ports:
+        - containerPort: {{ .Values.containerPort }}
+        resources:
+          requests:
+            cpu: {{ .Values.resources.requests.cpu }}
+            memory: "{{ .Values.resources.requests.memory }}"
+          limits:
+            cpu: {{ .Values.resources.limits.cpu }}
+            memory: "{{ .Values.resources.limits.memory }}"
+        env:
+          - name: spring.kafka.bootstrap-servers
+            valueFrom:
+              configMapKeyRef:
+                name: cm-{{ .Values.application }}-{{ .Values.environment }}
+                key: spring_kafka_bootstrap_servers
+          - name: fletum.api.url
+            valueFrom:
+              configMapKeyRef:
+                name: cm-{{ .Values.application }}-{{ .Values.environment }}
+                key: fletum_api_url
+          - name: ApplicationInsights__InstrumentationKey
+            valueFrom:
+              configMapKeyRef:
+                name: cm-{{ .Values.application }}-{{ .Values.environment }}
+                key: applicationinsights-instrumentationkey
+          - name: ES_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: cm-{{ .Values.application }}-{{ .Values.environment }}
+                key: elasticconfiguration-uri
+          - name: ES_USER
+            valueFrom:
+              configMapKeyRef:
+                name: cm-{{ .Values.application }}-{{ .Values.environment }}
+                key: elasticconfiguration-username
+          - name: ES_PASS
+            valueFrom:
+              secretKeyRef:
+                name: sec-{{ .Values.application }}-{{ .Values.environment }}
+                key: elasticconfiguration-password
+          - name: KB_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: cm-{{ .Values.application }}-{{ .Values.environment }}
+                key: elasticconfiguration-kb-uri
+          - name: KB_USER
+            valueFrom:
+              configMapKeyRef:
+                name: cm-{{ .Values.application }}-{{ .Values.environment }}
+                key: elasticconfiguration-kb-username
+          - name: KB_PASS
+            valueFrom:
+              secretKeyRef:
+                name: sec-{{ .Values.application }}-{{ .Values.environment }}
+                key: elasticconfiguration-kb-password
+          - name: IsApiKeyEnabled
+            valueFrom:
+              configMapKeyRef:
+                name: cm-{{ .Values.application }}-{{ .Values.environment }}
+                key: isapikeyenabled
+          - name: kafka.group.id
+            valueFrom:
+              configMapKeyRef:
+                name: cm-{{ .Values.application }}-{{ .Values.environment }}
+                key: kafka-groupid
+          - name: kafka.createitem.concurrency
+            valueFrom:
+              configMapKeyRef:
+                name: cm-{{ .Values.application }}-{{ .Values.environment }}
+                key: kafka-createitem-concurrency
+          - name: item.service.batch.size
+            valueFrom:
+              configMapKeyRef:
+                name: cm-{{ .Values.application }}-{{ .Values.environment }}
+                key: item_service_batch_size
+          - name: item.service.url
+            valueFrom:
+              configMapKeyRef:
+                name: cm-{{ .Values.application }}-{{ .Values.environment }}
+                key: item_service_url
+          - name: COUNTRY
+            valueFrom:
+              configMapKeyRef:
+                name: cm-{{ .Values.application }}-{{ .Values.environment }}
+                key: country
+          - name: PRODUCT_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: cm-{{ .Values.application }}-{{ .Values.environment }}
+                key: product_name
+          - name: APP_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: cm-{{ .Values.application }}-{{ .Values.environment }}
+                key: app_name
+          - name: logging.level.root
+            valueFrom:
+              configMapKeyRef:
+                name: cm-{{ .Values.application }}-{{ .Values.environment }}
+                key: logging_level_root

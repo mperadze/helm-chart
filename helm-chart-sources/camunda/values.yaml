@@ -1,0 +1,39 @@
+# Default values for camunda.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# Common controls
+environment: dev
+application: camunda
+containerPort: 8080
+size: medium
+
+# Service controls
+service:
+  name: camunda-svc
+  type: LoadBalancer
+  port: 8080
+
+# Deployment controls
+restartPolicy: Always
+
+replicas: 1
+resources:
+  requests:
+    cpu: 150m
+    memory: 500Mi
+  limits:
+    cpu: 500m
+    memory: 2Gi
+
+image:
+  imagePullSecret: regcred
+  repository: camunda/camunda-bpm-platform
+  tag: 7.9.0
+
+# ConfigMap controls
+db_driver: org.postgresql.Driver
+
+registrySecret:
+  name: acr-registry
+  config: { "auths": { "docker.io": { "auth": "" } } }

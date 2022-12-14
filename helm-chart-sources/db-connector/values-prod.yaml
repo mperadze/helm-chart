@@ -1,0 +1,77 @@
+# Default values for db-connector PROD.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+environment: kz-prod
+
+# ingress controls
+ingress:
+  name: db-connector-ing
+  allowCredentials: "true"
+  allowHeaders: "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization,SessionId,api-key,token"
+  allowMethods: "*"
+  allowOrigin: "*"
+  enableCors: "true"
+  hostName: kz-cdp-db-connector-local.hostname.com
+  secretName: hostname-com-tls
+  path: "/"
+  className: internal-nginx
+
+image:
+  repository: cemulkerefe/db-connector
+  tag: latest
+
+spring_kafka_bootstrap_servers: kafka-cluster-kz-prod-kafka-bootstrap.prod-kafka.svc:9092
+fletum_api_url: https://prod-api.azurewebsites.net
+applicationinsights_instrumentationkey: "InstrumentationKey=7f6eb550-d430-4bed-a6b5-f8fb18e5d4db;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/"
+elasticconfiguration_uri: "https://elk-prod.es.westeurope.azure.elastic-cloud.com:443"
+elasticconfiguration_username: "logger"
+elasticconfiguration_password: "password"
+elasticconfiguration_kb_uri: "https://elk-prod.kb.westeurope.azure.elastic-cloud.com:443"
+elasticconfiguration_kb_username: "logger"
+elasticconfiguration_kb_password: "password"
+isapikeyenabled: "false"
+logging_level_root: "Debug"
+env_name: PROD
+direct_connection: true
+cep_module_url: http://cep-module-svc-kz-prod:7070
+entity_module_url: http://item-service-svc-kz-prod:8090
+serilogminimumlevel: "Debug"
+
+hpa:
+  enabled: true
+  min: 1
+  max: 1
+  cpu: 95
+  memory: 95
+
+resources:
+  requests:
+    cpu: 4
+    memory: 20Gi
+  limits:
+    cpu: 4
+    memory: 20Gi
+
+new_relic_app_name: db-connector-kz-prod
+
+livenessProbe:
+  enabled: true
+  httpGet:
+    path: "/swagger-ui.html"
+    port: 7081
+  initialDelaySeconds: 20
+  periodSeconds: 10
+  timeoutSeconds: 10
+  failureThreshold: 10
+  successThreshold: 1
+readinessProbe:
+  enabled: true
+  httpGet:
+    path: "/swagger-ui.html"
+    port: 7081
+  initialDelaySeconds: 15
+  periodSeconds: 10
+  timeoutSeconds: 10
+  failureThreshold: 10
+  successThreshold: 1

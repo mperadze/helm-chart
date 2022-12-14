@@ -1,0 +1,87 @@
+# Default values for identity-service.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# Common controls
+environment: dev
+application: identity-service #Parameter to change for new applications
+containerPort: 8989 #Parameter to change for new applications
+size: medium
+
+# Service controls
+service:
+  name: identity-service-svc #Parameter to change for new applications
+  type: ClusterIP
+  port: 8989 #Parameter to change for new applications
+
+hpa:
+  min: 1
+  max: 10
+  cpu: 75
+  memory: 75
+
+# ingress controls
+ingress:
+  name: identity-service-ing #Parameter to change for new applications
+  clusterIssuer: letsencrypt
+  allowCredentials: "true"
+  allowHeaders: "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization,SessionId,api-key,token"
+  allowMethods: "*"
+  allowOrigin: "*"
+  enableCors: "true"
+  hostName: identity-service-dev.11.11.111.111.nip.io #Parameter to change for new applications
+  secretName: identity-service-tls #Parameter to change for new applications
+  path: "/"
+
+# Deployment controls
+restartPolicy: Always
+
+replicas: 1
+resources:
+  requests:
+    cpu: 150m
+    memory: 500Mi
+  limits:
+    cpu: 500m
+    memory: 1Gi
+
+image:
+  imagePullSecret: regcred
+  pullPolicy: Always
+  repository: cemulkerefe/identity-service #Parameter to change for new applications
+  tag: latest
+
+country: KZ
+product_name: CDP
+app_name: identity-service #Parameter to change for new applications
+
+# ConfigMap controls
+urls: "http://0.0.0.0:8989"
+jwt_configuration_issuer: "http://0.0.0.0:8989"
+jwt_configuration_audience: "http://0.0.0.0:8989"
+smtp_server: "smtp.office365.com"
+smtp_port: "587"
+isssl: "true"
+smtp_email: "mail@mail.com"
+smtp_password: "00000000"
+fletumapiurl: "https://fletum-test-api.azurewebsites.net"
+application_url: "http://0.0.0.0:8989"
+
+new_relic_license_key:
+elasticconfiguration_port: 443
+elasticconfiguration_scheme: https
+logcustomerid: efectura
+logproductname: cdp
+logcountry: kz
+logcomponentname: service
+logapplicationname: identity
+
+# liveness-readness
+livenessProbe:
+  enabled: false
+readinessProbe:
+  enabled: false
+
+registrySecret:
+  name: acr-registry
+  config: { "auths": { "docker.io": { "auth": "" } } }
